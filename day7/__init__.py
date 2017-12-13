@@ -10,10 +10,13 @@ complete = list(contents)
 topprograms = []
 weights = {}
 tops = {}
+bottoms = []
 
-    
+
+        
 
 for x in complete:
+    progweights = []
     bottom, top = x[0:x.find(" ")] , x[x.find(">") + 1:]
     weights[bottom] = int(x[x.find("(")+1:x.find(")")])
     
@@ -22,7 +25,12 @@ for x in complete:
         progs = [top.strip() for top in progs]
         
         tops[bottom] = progs
-           
+        for y in progs:
+            progweights.append(weights[y])
+        bottoms.append(bottom)
+        if progweights[1:] != progweights[:-1]:
+            
+            
         topprograms += progs
         
 
@@ -31,6 +39,5 @@ for x in allprograms:
     if x not in topprograms:
         print(x)
 
-def checkWrong(basekey):
-    for progs in tops[basekey]:
+
         
